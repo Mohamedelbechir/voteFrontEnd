@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SlimComponent } from './slim/slim.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { IntroComponent } from './intro/intro.component';
@@ -16,7 +15,6 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SlimComponent,
     HeaderComponent,
     FooterComponent,
     IntroComponent,

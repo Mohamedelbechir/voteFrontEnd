@@ -187,7 +187,9 @@ h6 {
 #header #logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  transform: translateY(-15px);
+  max-height: 80px;
+  /* max-height: 40px; */
 }
 
 /*--------------------------------------------------------------
@@ -1419,7 +1421,8 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 #footer .footer-top .footer-info img {
-  height: 40px;
+  max-height: 80px;
+  transform: translateY(-30px);
   margin-bottom: 10px;
 }
 

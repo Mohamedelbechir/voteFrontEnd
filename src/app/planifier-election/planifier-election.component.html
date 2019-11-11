@@ -1,0 +1,132 @@
+<div class="container mt-planifier ">
+
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-dark  mb-4 mt-4" data-toggle="modal" data-target="#exampleModalLong">
+    planifer election
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Planifier élection</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form (ngSubmit)="onSubmit(formPlanifier.value)" #formPlanifier="ngForm">
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="dateDebut">Date du début d'élection</label><br>
+              <input [owlDateTime]="dateDebut" placeholder="Date Time" id="dateElections" name="dateDebut" ngModel>
+              <span [owlDateTimeTrigger]="dateDebut"><i class="fa fa-calendar"></i></span>
+              <owl-date-time #dateDebut></owl-date-time>
+
+            </div>
+            <div class="form-group">
+              <label for="dateFin" class="">Date de la fin d'élection</label><br>
+              <input [owlDateTime]="dateFin" placeholder="Date Time" id="dateFin" name="dateFin" ngModel>
+              <span [owlDateTimeTrigger]="dateFin"><i class="fa fa-calendar"></i></span>
+              <owl-date-time #dateFin></owl-date-time>
+
+            </div>
+            <div class="form-group">
+              <label for="typeElection">Type:</label>
+              <select class="form-control" ngModel name="type">
+                <option value="presidentielle">Présidentielle</option>
+                <option value="legislative">Législative</option>
+                <option value="municipale">municipale </option>
+
+              </select>
+            </div>
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="mo
+            dal">Fermer</button>
+            <input type="submit" class="btn btn-dark" value="Enregistrer" />
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+ 
+  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Foo</td>
+        <td>Bar</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Someone</td>
+        <td>Youknow</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Iamout</td>
+        <td>Ofinspiration</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Yoda</td>
+        <td>Skywalker</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Patrick</td>
+        <td>Dupont</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Barack</td>
+        <td>Obama</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>François</td>
+        <td>Holland</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Michel</td>
+        <td>Popo</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Chuck</td>
+        <td>Norris</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Simon</td>
+        <td>Robin</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>Louis</td>
+        <td>Lin</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Zelda</td>
+        <td>Link</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

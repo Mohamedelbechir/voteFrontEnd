@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~ng-pick-datetime/assets/style/picker.min.css"; 
+.modal{
+    overflow: hidden !important;
+}
+.bg-primary{
+    background-color: rgba(6, 12, 34, 0.98);
+}
+.cdk-overlay-container {
+    z-index: 2000 !important;
+}

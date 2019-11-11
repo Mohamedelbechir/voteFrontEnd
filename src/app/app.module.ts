@@ -11,6 +11,20 @@ import { GaleryComponent } from './galery/galery.component';
 import { IsieComponent } from './isie/isie.component';
 import { AboutComponent } from './about/about.component';
 import { NewsletterComponent } from './newsletter/newsletter.component';
+import { HeaderAdminComponent } from './header-admin/header-admin.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { PlanifierElectionComponent } from './planifier-election/planifier-election.component';
+
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
+
+import { DataTablesModule } from 'angular-datatables';
+import { FormsModule } from '@angular/forms';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { ElectionService } from './services/election.service';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -22,13 +36,24 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     GaleryComponent,
     IsieComponent,
     AboutComponent,
-    NewsletterComponent
+    NewsletterComponent,
+    HeaderAdminComponent,
+    HomePageComponent,
+    PlanifierElectionComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    AppRoutingModule,
+    DataTablesModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
+    SweetAlert2Module
+    
   ],
-  providers: [],
+  providers: [AppComponent, ElectionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

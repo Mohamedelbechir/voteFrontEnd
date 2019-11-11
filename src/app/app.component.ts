@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Mon vote';
+  isAdmin = true;
+   dt = Date();
+  // Prevent Saturday and Sunday from being selected.
+ 
 }

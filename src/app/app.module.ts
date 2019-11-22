@@ -19,12 +19,14 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 
 import { DataTablesModule } from 'angular-datatables';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ElectionService } from './services/election.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { CandidatComponent } from './candidat/candidat.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     NewsletterComponent,
     HeaderAdminComponent,
     HomePageComponent,
-    PlanifierElectionComponent
+    PlanifierElectionComponent,
+    CandidatComponent
   ],
   imports: [
     BrowserModule,
@@ -48,12 +51,13 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     DataTablesModule,
     FormsModule,
     BrowserAnimationsModule,
-    OwlDateTimeModule, 
+    OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    SweetAlert2Module
-    
+    SweetAlert2Module,
+    ReactiveFormsModule
+
   ],
-  providers: [AppComponent, ElectionService],
+  providers: [AppComponent, ElectionService, { provide: OWL_DATE_TIME_LOCALE, useValue: 'fr' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 import {
   Component,
   OnInit,
-  ViewChild
+  ViewChild,
+  OnDestroy
 } from '@angular/core';
 import {
   DataTableDirective
@@ -11,7 +12,7 @@ import {
   DateTimeAdapter
 } from 'ng-pick-datetime';
 import {
-  NgForm
+  NgForm, FormGroup, FormBuilder, Validators
 } from '@angular/forms';
 import {
   ElectionService
@@ -22,24 +23,34 @@ import {
 
 import * as moment from 'moment';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-declare var $;
+import { Subject } from 'rxjs';
+//declare var $;
 
 @Component({
   selector: 'app-planifier-election',
   templateUrl: './planifier-election.component.html',
   styleUrls: ['./planifier-election.component.scss']
 })
-export class PlanifierElectionComponent implements OnInit {
+export class PlanifierElectionComponent implements OnDestroy,OnInit {
+  @ViewChild(DataTableDirective, {static: false})
+  dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   elections: Election[];
-  tableDataIsLoaded: boolean = false;
+  //tableDataIsLoaded: boolean = false;
+  formPlan: FormGroup;
 
   //electionService: ElectionService;
 
   //dt2 = new Date();
-  constructor(dateTimeAdapter: DateTimeAdapter < any > , private electionService: ElectionService) {
-    dateTimeAdapter.setLocale('fr-FR'); // change locale to Japanese
+  constructor(dateTimeAdapter: DateTimeAdapter < any > , private electionService: ElectionService, private formBuilder: FormBuilder) {
+   // dateTimeAdapter.setLocale('de'); // change locale to Japanese
 
+    this.formPlan = this.formBuilder.group({
+      dateDebut: ['',Validators.required],
+      dateFin: ['',Validators.required],
+      type: ['presidentielle',Validators.required],
+    });
   }
   ngOnInit(): void {
 
@@ -79,42 +90,59 @@ export class PlanifierElectionComponent implements OnInit {
     };
     this.electionService.getElections().subscribe((data: Election[]) => {
         this.elections = data;
-        this.tableDataIsLoaded = true;
-
+      
+          //this.tableDataIsLoaded = true;
+          this.dtTrigger.next();
+        
       },
       (error) => console.log(error)
     );
   }
   onSubmit(election: Election) {
-    //console.log(election);
+  
     election.dateDebut = moment(election.dateDebut).format('YYYY/MM/DD HH:mm:ss');
     election.dateFin = moment(election.dateFin).format('YYYY/MM/DD HH:mm:ss');
-
+    
     this.electionService.addElection(election).subscribe((data: Election) => {
-
-        console.log('election planifiée');
-
-        const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          onOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-          }
-        });
-
-        Toast.fire({
-          icon: 'success',
-          title: 'Election planifié avec success!'
-        });
-
+     
+        this.elections.push(election);
+        this.showNotify();        
+        this.formPlan.reset();
+        this.rerender();
       },
       (error) => console.log(error)
 
     );
 
+  }
+  showNotify() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Election planifié avec success!'
+    });
+  }
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
+  ngOnDestroy(): void {
+    // Do not forget to unsubscribe the event
+    this.dtTrigger.unsubscribe();
   }
 }

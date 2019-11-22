@@ -1,0 +1,138 @@
+<div class="container mt-100 ">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-dark  mb-4 mt-4" data-toggle="modal" data-target="#exampleModalLong">
+    Ajouter Candidat
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade " id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Ajout candidat</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="col-8">
+          <form [formGroup]="formCandidat" (ngSubmit)="onSubmit(formCandidat.value)">
+            <div class="modal-body">
+
+              <div class="row">
+
+                <img src="" alt="" class="avatar img-circle">
+                <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="file" (change)="onFileChange($event)" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+
+                    <input placeholder="Numero cin" formControlName="cin" required class="form-control">
+
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="Nom" formControlName="nom" required class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <input placeholder="Prénom" formControlName="prenom" required class="form-control">
+                  </div>
+
+                  <div class="form-group">
+
+                    <input [owlDateTime]="date_naissance" placeholder="Date de Naissance"
+                      formControlName="date_naissance" class="form-control col-10" [style.display]="inline-block" required>
+                    <span [owlDateTimeTrigger]="dateDebut" class="col-1" [style.display]="inline-block"><i class="fa fa-calendar"></i></span>
+                    <owl-date-time #date_naissance></owl-date-time>
+
+                  </div>
+                  <div class="form-group">
+
+                    <input placeholder="Adresse" formControlName="adresse" required class="form-control">
+                  </div>
+
+                </div>
+                <div class="col-6">
+                  <div class="form-group row">
+                    <label for="origine" class="col-md-6 text-md-left">Ville d'origine</label>
+                    <div class="col-md-6">
+                      <select name="origine" id="origine" class="form-control">
+                        <option value="sfax">sfax</option>
+                        <option value="tunis">tunis</option>
+                        <option value="le Kef">le Kef</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+
+                    <input placeholder="Téléphone" formControlName="tel" required class="form-control">
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-6">
+
+
+                      <input type="radio" id="masculin" formControlName="masculin" value="Masculin" checked>
+                      <label for="masculin">Masculin</label>
+                    </div>
+                    <div class="col-6">
+                      <input type="radio" id="feminin" name="feminin" value="feminin">
+                      <label for="feminin">Feminin</label>
+                    </div>
+
+                  </div>
+                  <div class="form-group row">
+                    <label for="sutuation familiale" class="col-md-4 text-md-left">Situation familiale</label>
+
+                    <div class="col-md-8"> <select name="situation_familiale" id="situation_familiale"
+                        class="form-control">
+                        <option value="Celibataire">Celibataire</option>
+                        <option value="Marié">Marié</option>
+                        <option value="Divorcé">Divorcé</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="mo
+                                dal">Fermer</button>
+                <button type="submit" class="btn btn-dark" [disabled]="formPlan.invalid">Enregistrer</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <table id="dataTablePlanification" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+    class="row-border hover table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="text-center">Type d'élection</th>
+        <th class="text-center">Date debut d'éléction</th>
+        <th class="text-center">Date fin d'éléction</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidat of candidats;">
+        <td class="text-center">{{candidat.nom| titlecase}}</td>
+        <td class="text-center">{{candidat.prenom }}</td>
+        <td class="text-center">{{candidat.date_naissance}}</td>
+        <td class="text-center">{{candidat.adresse| titlecase}}</td>
+        <td class="text-center">{{candidat.tel }}</td>
+        <td class="text-center">{{candidat.orgine}}</td>
+        <td><a href="" class="btn btn-primary" title="participer">participer</a></td>
+        <td><a href="" class="btn btn-danger"><i class="icon icon-edit"></i></a></td>
+        <td><a href="" class="btn btn-danger"><i class="icon icon-trash"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

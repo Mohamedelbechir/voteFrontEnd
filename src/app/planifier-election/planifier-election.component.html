@@ -1,4 +1,4 @@
-<div class="container mt-planifier ">
+<div class="container mt-100 ">
 
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-dark  mb-4 mt-4" data-toggle="modal" data-target="#exampleModalLong">
@@ -17,30 +17,29 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form (ngSubmit)="onSubmit(formPlanifier.value)" #formPlanifier="ngForm">
+        <form [formGroup]="formPlan" (ngSubmit)="onSubmit(formPlan.value)">
           <div class="modal-body">
 
             <div class="form-group">
               <label for="dateDebut">Date du début d'élection</label><br>
-              <input [owlDateTime]="dateDebut" placeholder="Date Time" id="dateElections" name="dateDebut" ngModel>
-              <span [owlDateTimeTrigger]="dateDebut"><i class="fa fa-calendar"></i></span>
+              <input [owlDateTime]="dateDebut"  placeholder="Date Time" id="dateDebut" formControlName="dateDebut" >
+              <span [owlDateTimeTrigger]="dateDebut" ><i class="fa fa-calendar"></i></span>
               <owl-date-time #dateDebut></owl-date-time>
 
             </div>
             <div class="form-group">
               <label for="dateFin" class="">Date de la fin d'élection</label><br>
-              <input [owlDateTime]="dateFin" placeholder="Date Time" id="dateFin" name="dateFin" ngModel>
+              <input [owlDateTime]="dateFin" placeholder="Date Time" id="dateFin" formControlName="dateFin" >
               <span [owlDateTimeTrigger]="dateFin"><i class="fa fa-calendar"></i></span>
               <owl-date-time #dateFin></owl-date-time>
 
             </div>
             <div class="form-group">
               <label for="typeElection">Type:</label>
-              <select class="form-control" ngModel name="type">
+              <select class="form-control"  formControlName="type">
                 <option value="presidentielle">Présidentielle</option>
                 <option value="legislative">Législative</option>
                 <option value="municipale">municipale </option>
-
               </select>
             </div>
 
@@ -50,7 +49,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="mo
             dal">Fermer</button>
-            <input type="submit" class="btn btn-dark" value="Enregistrer" />
+            <button type="submit" class="btn btn-dark" [disabled]="formPlan.invalid">Enregistrer</button>
           </div>
         </form>
       </div>
@@ -59,7 +58,7 @@
   </div>
  
  
-  <table id="dataTablePlanification" *ngIf="tableDataIsLoaded" datatable [dtOptions]="dtOptions" class="row-border hover table table-striped table-bordered">
+  <table id="dataTablePlanification"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped table-bordered">
     <thead>
       <tr>
         <th class="text-center">Type d'élection</th>
@@ -70,10 +69,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let election of elections;">
-        <td>{{election.type | titlecase}}</td>
+        <td class="text-center">{{election.type | titlecase}}</td>
         <td class="text-center">{{election.dateDebut }}</td>
         <td class="text-center">{{election.dateFin}}</td>
-     
+      </tr>
     </tbody>
   </table>
 </div>

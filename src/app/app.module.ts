@@ -27,6 +27,7 @@ import { ElectionService } from './services/election.service';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { CandidatComponent } from './candidat/candidat.component';
+import { CandidatElectComponent } from './candidat-elect/candidat-elect.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CandidatComponent } from './candidat/candidat.component';
     HeaderAdminComponent,
     HomePageComponent,
     PlanifierElectionComponent,
-    CandidatComponent
+    CandidatComponent,
+    CandidatElectComponent
   ],
   imports: [
     BrowserModule,

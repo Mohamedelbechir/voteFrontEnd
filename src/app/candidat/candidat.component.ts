@@ -15,6 +15,7 @@ export class CandidatComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   candidats: Candidat[];
   formCandidat: FormGroup;
+  
 
   constructor(private candidatService: CandidatService, private formBuilder: FormBuilder) {
   
@@ -24,8 +25,7 @@ export class CandidatComponent implements OnInit {
       cin: ['',[Validators.required]],
       nom: ['',Validators.required],
       prenom: ['',Validators.required],
-      date_naissance: ['',Validators.required],
-      addresse: ['',Validators.required],
+      date_naissance: ['',Validators.required],      
       tel: ['',Validators.required],
       sexe: ['',Validators.required],
       situation_familiale: ['',Validators.required],

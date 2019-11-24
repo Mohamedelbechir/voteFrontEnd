@@ -11,101 +11,115 @@
 
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Ajout candidat</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">Nouvelle candidat</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="col-8">
-          <form [formGroup]="formCandidat" (ngSubmit)="onSubmit(formCandidat.value)">
-            <div class="modal-body">
 
+        <form [formGroup]="formCandidat" (ngSubmit)="onSubmit(formCandidat.value)">
+          <div class="modal-body ">
               <div class="row">
+                   
 
-                <img src="" alt="" class="avatar img-circle">
-                <div class="form-group">
-                  <label for="image">Image</label>
-                  <input type="file" (change)="onFileChange($event)" />
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-group">
 
-                    <input placeholder="Numero cin" formControlName="cin" required class="form-control">
-
-                  </div>
-                  <div class="form-group">
-                    <input placeholder="Nom" formControlName="nom" required class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input placeholder="Prénom" formControlName="prenom" required class="form-control">
-                  </div>
-
-                  <div class="form-group">
-
-                    <input [owlDateTime]="date_naissance" placeholder="Date de Naissance"
-                      formControlName="date_naissance" class="form-control col-10" [style.display]="inline-block" required>
-                    <span [owlDateTimeTrigger]="dateDebut" class="col-1" [style.display]="inline-block"><i class="fa fa-calendar"></i></span>
-                    <owl-date-time #date_naissance></owl-date-time>
-
-                  </div>
-                  <div class="form-group">
-
-                    <input placeholder="Adresse" formControlName="adresse" required class="form-control">
-                  </div>
-
-                </div>
-                <div class="col-6">
-                  <div class="form-group row">
-                    <label for="origine" class="col-md-6 text-md-left">Ville d'origine</label>
-                    <div class="col-md-6">
-                      <select name="origine" id="origine" class="form-control">
-                        <option value="sfax">sfax</option>
-                        <option value="tunis">tunis</option>
-                        <option value="le Kef">le Kef</option>
-                      </select>
+                            <div class="col-4">
+                              <div class="form-group row">
+              
+                                <input placeholder="Numero cin" formControlName="cin" required class="form-control">
+              
+                              </div>
+                              <div class="form-group row">
+                                <input placeholder="Nom" formControlName="nom" required class="form-control">
+                              </div>
+                              <div class="form-group row">
+                                <input placeholder="Prénom" formControlName="prenom" required class="form-control">
+                              </div>
+              
+                              <div class="form-group row">
+                                    
+                                      <input class="form-control" type="date"  id="example-datetime-local-input">
+                                
+                                  </div>
+                              <div class="form-group row">
+              
+                                <input placeholder="Adresse" formControlName="adresse" required class="form-control">
+                              </div>
+              
+                            </div>
+                            <div class="col-4 pl-4" >
+                              <div class="form-group row">
+              
+                                <select name="origine" id="origine" class="form-control">
+                                  <option value="Ville d'origine" selected> Selectionner Ville d'origine</option>
+                                  <option value="sfax">sfax</option>
+                                  <option value="tunis">tunis</option>
+                                  <option value="le Kef">le Kef</option>
+                                </select>
+              
+                              </div>
+                              <div class="form-group row">
+              
+                                <input placeholder="Téléphone" formControlName="tel" required class="form-control">
+                              </div>
+                             
+                              <div class="form-group row">
+                                <select name="situation_familiale" id="situation_familiale" class="form-control">
+                                  <option value="Situation familiale" selected> Selectionner Situation familiale</option>
+                                  <option value="Celibataire">Celibataire</option>
+                                  <option value="Marié">Marié</option>
+                                  <option value="Divorcé">Divorcé</option>
+                                </select>
+              
+                              </div>
+                              <div class="form-group row">
+                                <div class="input-group">
+              
+                                  <div class="custom-file">
+                                    <input type="file" class="custom-file-input form-control" id="inputGroupFile01"
+                                      aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                    <div class="col-6">
+                                      <input type="radio" id="masculin" formControlName="masculin" value="Masculin" checked>
+                                      <label for="masculin">Masculin</label>
+                                    </div>
+                                    <div class="col-6">
+                                      <input type="radio" id="feminin" name="feminin" value="feminin">
+                                      <label for="feminin">Feminin</label>
+                                    </div>
+                  
+                                  </div>
+              
+                            </div>
+                   
+                    <div class="col-md-4 pl-4">             
+                        <div class="text-center">
+                            <br>
+                            <img src="assets/img/avatar.jpg" alt="" class="avatar img-circle" height="150" width="150">
+                        </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-
-                    <input placeholder="Téléphone" formControlName="tel" required class="form-control">
-                  </div>
-                  <div class="form-group row">
-                    <div class="col-6">
-
-
-                      <input type="radio" id="masculin" formControlName="masculin" value="Masculin" checked>
-                      <label for="masculin">Masculin</label>
-                    </div>
-                    <div class="col-6">
-                      <input type="radio" id="feminin" name="feminin" value="feminin">
-                      <label for="feminin">Feminin</label>
-                    </div>
-
-                  </div>
-                  <div class="form-group row">
-                    <label for="sutuation familiale" class="col-md-4 text-md-left">Situation familiale</label>
-
-                    <div class="col-md-8"> <select name="situation_familiale" id="situation_familiale"
-                        class="form-control">
-                        <option value="Celibataire">Celibataire</option>
-                        <option value="Marié">Marié</option>
-                        <option value="Divorcé">Divorcé</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+              
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="mo
-                                dal">Fermer</button>
-                <button type="submit" class="btn btn-dark" [disabled]="formPlan.invalid">Enregistrer</button>
-              </div>
+                    <button type="button" class="btn btn-default" data-dismiss="mo
+                                            dal">Fermer</button>
+                    <button type="submit" class="btn btn-dark float-right" [disabled]="formPlan.invalid">Enregistrer</button>
+               </div>
+    
+             
+          </div>
 
-            </div>
-          </form>
-        </div>
+                  </form>
+
+
+
+
+
+
       </div>
     </div>
   </div>
@@ -115,13 +129,31 @@
     class="row-border hover table table-striped table-bordered">
     <thead>
       <tr>
-        <th class="text-center">Type d'élection</th>
-        <th class="text-center">Date debut d'éléction</th>
-        <th class="text-center">Date fin d'éléction</th>
-
+            <th class="text-center">Cin</th>
+        <th class="text-center">Nom</th>
+        <th class="text-center">Prénom</th>
+        <th class="text-center">Data de Naissance</th>
+        <th class="text-center">Adresse</th>
+        <th class="text-center">Telephone</th>
+        <th class="text-center">Ville d'origine</th>
+        <th class="text-center" colspan="3">options</th>
+        
       </tr>
     </thead>
     <tbody>
+        <tr>
+            <td class="text-center">slim</td>
+            <td class="text-center">mayssa</td>
+            <td class="text-center">nour </td>
+            <td class="text-center">bechir</td>
+            <td class="text-center">sourour naoures</td>
+
+            <td class="text-center">candidat.tel </td>
+            <td class="text-center">candidat.orgine</td>
+            <td><a href="" class="btn btn-success" title="participer"><i class="fa fa-check"></i></a></td>
+            <td><a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+            <td><a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+          </tr>
       <tr *ngFor="let candidat of candidats;">
         <td class="text-center">{{candidat.nom| titlecase}}</td>
         <td class="text-center">{{candidat.prenom }}</td>
@@ -129,9 +161,9 @@
         <td class="text-center">{{candidat.adresse| titlecase}}</td>
         <td class="text-center">{{candidat.tel }}</td>
         <td class="text-center">{{candidat.orgine}}</td>
-        <td><a href="" class="btn btn-primary" title="participer">participer</a></td>
-        <td><a href="" class="btn btn-danger"><i class="icon icon-edit"></i></a></td>
-        <td><a href="" class="btn btn-danger"><i class="icon icon-trash"></i></a></td>
+        <td><a href="" class="btn btn-success" title="participer"><i class="fa fa-check"></i></a></td>
+        <td><a href="" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+        <td><a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
       </tr>
     </tbody>
   </table>

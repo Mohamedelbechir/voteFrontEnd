@@ -1,0 +1,23 @@
+<div class="login" style="background: url(assets/img/vote/12.jpg) top center; background-size: cover;">
+  <div class="d-flex align-items-center justify-content-center vh-100">
+    <div class="d-flex p-4 justify-content-center shadow-lg"
+      style="height: 20rem; width: 30rem; position: relative;  background-color: white;border-radius: 3px;">
+      <div class="d-flex justify-content-center align-items-center flex-column " style="z-index: 5;">
+        <h4 class="d-block">Authentification</h4>
+        <form [formGroup]="formLogin" (ngSubmit)="onSubmit(formLogin.value)">
+
+          <div class="mb-2">
+            <input class="form-control" placeholder="numéro cin" formControlName="cin" required>
+          </div>
+          <div class="mb-2">
+            <input class="form-control" type="password" placeholder="mot de passe" formControlName="password" required>
+          </div>
+          <button type="submit" class="btn btn-dark float-right" [disabled]="formLogin.invalid">Se connecter</button>
+        </form>
+        <span *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -18,6 +18,11 @@ export class ElectionService {
     return this.http.post<Election>(this.entityUrl, election,{headers:headers});
 
   }
+  update(id: string, election: Election): Observable<Election> {
+    let headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8',"Access-Control-Allow-Origin":"*"}); 
+
+    return this.http.put<Election>(this.entityUrl + '/' + id, election,{headers:headers});     
+  }
   getElections(){
     return this.http.get<Election[]>(this.entityUrl);
   }

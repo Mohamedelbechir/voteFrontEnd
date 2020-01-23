@@ -1,8 +1,7 @@
 import { Election } from './election';
 
-export interface Candidat{
-    candidat_id: number;
-    email: string;
+export interface Utilisateur{
+    id: number;
     cin: string;
     nationnalite: string;
     nom: string;
@@ -13,6 +12,8 @@ export interface Candidat{
     sexe: string;
     situation_familiale: string;
     origine: string;
-    //elections: Election;
+    password: string;
+    type: string;
+    elections: Election[];
  
 }

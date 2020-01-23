@@ -1,0 +1,27 @@
+<!-- <div class="col-xl-4 col-md-6 col-sm-12 mt-4"> -->
+        <div class="rounded shadow-sm overflow-hidden d-flex flex-column  p-4 border">
+  
+          <div class="d-flex align-items-end">
+            <div class="d-fex flex-column">
+              <span class="d-block text-danger text-center font-weight-bold">{{ pourcentage ?  pourcentage +'%' : '0%'}}</span>
+              <span class="position-relative bg-light d-block rounded overflow-hidden shadow-sm "
+                style="height: 15rem;  width: 2.5rem;">
+                <span class="position-absolute bg-dark"
+                  style="bottom: 0; left: 0;right: 0;   width: 2.5rem;" [ngStyle]="{'height': getHeight()}"></span>
+              </span>
+            </div>
+            <div class="ml-4 text-center">
+              <img src="assets/img/avatar.jpg" class="card-img-top img-circle" style="border-radius: 15px;" alt="...">
+              <!-- <h6 class="mt-2 text-center d-inline-block p-2 bg-light rounded font-italic font-weight-bold">
+                            {{ candidat.nom +' '+ candidat.prenom }}</h6> -->
+            </div>
+          </div>
+          <div class="d-flex mt-4">
+            <span class="d-inline-block p-2 bg-light text-center font-weight-bold mr-1 d-flex border shadow-sm" style="border-radius: 25%;">{{rang}}</span>
+            <span class="flex-fill text-center d-inline-block p-2 bg-light rounded font-italic font-weight-bold">
+              {{candidat.prenom +' '+ candidat.nom}} </span>
+          </div>
+        </div>
+  
+      <!-- </div> -->
+   

@@ -1,0 +1,11 @@
+.voter{
+    height: 50px;
+    color: red;
+    background-color:red;
+
+    
+}
+
+[type=radio] {    display: none;}
+[type=radio] + label:before {    content: "\f10c";  font-family:   FontAwesome;  font-size: 2.5em; color: gray;    letter-spacing: 10px;  display: inline-block;}
+[type=radio]:checked + label:before {    content: "\f192";  font-family: FontAwesome; color: green}

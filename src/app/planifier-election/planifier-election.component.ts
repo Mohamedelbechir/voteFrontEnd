@@ -43,10 +43,11 @@ export class PlanifierElectionComponent implements OnDestroy,OnInit {
   //electionService: ElectionService;
 
   //dt2 = new Date();
-  constructor(dateTimeAdapter: DateTimeAdapter < any > , private electionService: ElectionService, private formBuilder: FormBuilder) {
+  constructor(private dateTimeAdapter: DateTimeAdapter < any > , private electionService: ElectionService, private formBuilder: FormBuilder) {
    // dateTimeAdapter.setLocale('de'); // change locale to Japanese
 
     this.formPlan = this.formBuilder.group({
+      libele: ['',Validators.required],
       dateDebut: ['',Validators.required],
       dateFin: ['',Validators.required],
       type: ['presidentielle',Validators.required],
@@ -92,7 +93,10 @@ export class PlanifierElectionComponent implements OnDestroy,OnInit {
         this.elections = data;
       
           //this.tableDataIsLoaded = true;
+        
           this.dtTrigger.next();
+          console.log('la première election comprend'+ data[0].candidats.length+"candidats");
+          
         
       },
       (error) => console.log(error)
@@ -105,7 +109,7 @@ export class PlanifierElectionComponent implements OnDestroy,OnInit {
     
     this.electionService.addElection(election).subscribe((data: Election) => {
      
-        this.elections.push(election);
+        this.elections.push(data);
         this.showNotify();        
         this.formPlan.reset();
         this.rerender();

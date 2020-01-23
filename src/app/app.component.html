@@ -1,5 +1,5 @@
 
-<app-header *ngIf="!isAdmin"></app-header>
-<app-header-admin *ngIf="isAdmin"> </app-header-admin>
+<app-header></app-header>
+<app-header-admin *ngIf="canShowAdminMenu()"> </app-header-admin>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+<app-footer *ngIf="isLogin"></app-footer>

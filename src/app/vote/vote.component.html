@@ -1,0 +1,38 @@
+<div class="container mt-100">
+
+ <div *ngIf="dejaVote && !laoding" class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <h2  class="text-danger text-center d-inline-block bg-light rounded px-4 py-2">Désolé vous avez déjà voté !  </h2>
+ </div>
+ <div *ngIf="outDate && !laoding" class="d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <h2  class="text-danger text-center d-inline-block bg-light rounded px-4 py-2">La date du vote est déjà passée   </h2>
+ </div>
+  <Form [formGroup]="formVote" (ngSubmit)="onSubmit(formVote)" *ngIf="!dejaVote && !laoding && !outDate">
+    <div class="row">
+
+      <div *ngFor="let candidat of candidats; let i = index" class="col-xl-4 col-md-6 col-sm-12 mt-4">
+        <div class="rounded border d-inline-block shadow-sm">
+          <div class="row">
+            <div class="col-5 pt-2 ml-4 text-center">
+              <img src="assets/img/avatar.jpg" class="card-img-top img-circle" style="border-radius: 15px; " alt="...">
+              <h6 class="mt-2 text-center d-inline-block p-2 bg-light rounded font-italic font-weight-bold">{{ candidat.nom +' '+ candidat.prenom }}</h6>
+            </div>
+            <div class="col-6 d-flex align-items-center pl-2 justify-content-center">
+              <!-- [id]="i" -->
+              <input [id]="'id'+i" type="radio" [value]="candidat.id" formControlName="vote">
+              <label [for]="'id'+i" class="d-flex align-items-center blold">Je vote !</label>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex justify-content-center">
+      <div class="row mt-4 col-3">
+        <input  class="btn btn-success btn-block btn-lg"  [ngClass]="{'opacity-50 not-allowed': formVote.invalid, 'hover:bg-primary': formVote.valid}" type="submit" [disabled]="formVote.invalid" value="Voter">
+       <!-- <a href="" class="btn btn-success btn-block" [disabled]="formCandidat.invalid"><span class="fa fa-check"></span>Voter</a> -->
+      </div>
+    </div>
+    
+  </Form>
+</div>

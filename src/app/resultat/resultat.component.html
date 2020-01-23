@@ -1,0 +1,12 @@
+<div class="container mt-100">
+    <h5 class="font-weight-bold"> Resultat de l'éction du : {{ currentElection ? currentElection.dateDebut :''  }}</h5>
+  <div class="row">
+        <app-resultat-candidat *ngFor="let item of resultats; let i = index;"
+        [candidat]="item.candidat"
+        [nbTVote]="nbTvote"
+        [nbVoteC]="item.nbVote"
+        [rang]="i+1"
+        class="col-xl-4 col-md-6 col-sm-12 mt-4">
+    </app-resultat-candidat>
+   </div>
+</div>

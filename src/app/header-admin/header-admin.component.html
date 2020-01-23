@@ -15,11 +15,12 @@
           <li routerLinkActive="menu-active"><a href="#intro" [routerLink]="['/home']">Accueil</a></li>
           <li routerLinkActive="menu-active"><a  [routerLink]="['/election']">Eléction</a></li>
           <li routerLinkActive="menu-active"><a  [routerLink]="['/candidats']">Candidats</a></li>
-            
-          <li><a href="#speakers">Electeur</a></li>
-          <li><a href="#supporters">Resultat de vote</a></li>
-          <!-- <li><a href="#contact">Contact</a></li> -->
-          <li class="buy-tickets"><a href="#buy-tickets">Profil</a></li>
+          <li routerLinkActive="menu-active"><a  [routerLink]="['/electeurs']">Electeur</a></li>
+          <li routerLinkActive="menu-active"><a  [routerLink]="['/vote']">Vote</a></li>
+          <li routerLinkActive="menu-active"><a  [routerLink]="['/resultats']">Résulats</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li *ngIf="currentUser!==null" (click)="logOut()" class="buy-tickets"><a >Déconnexion</a></li>
+          <!-- <li routerLinkActive="menu-active"><a  [routerLink]="['/resultats']">Déconnexion</a></li> -->
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

@@ -1,0 +1,146 @@
+<div class="container mt-100 ">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-dark  mb-4 mt-4" data-toggle="modal" data-target="#exampleModalLong">
+          Ajouter électeur
+        </button>
+      
+        <!-- Modal -->
+        <div class="modal fade " id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Nouvel électeur</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form [formGroup]="formElecteur" (ngSubmit)="onSubmit(formElecteur.value)">
+                <div class="modal-body ">
+                  <div class="row pl-2">
+                    <div class="col-4">
+                      <div class="form-group row">
+      
+                        <input type="text" class="form-control" placeholder="Numero cin" formControlName="cin" required>
+      
+                      </div>
+                      <div class="form-group row">
+                        <input class="form-control" placeholder="Nom" formControlName="nom" required>
+                      </div>
+                      <div class="form-group row">
+                        <input class="form-control" placeholder="Prénom" formControlName="prenom" required>
+                      </div>
+                      <div class="form-group row">
+                        <input class="form-control" type="email" placeholder="Email" formControlName="email" required>
+                      </div>
+      
+                      <div class="form-group row">
+      
+                        <input class="form-control" type="date" id="example-datetime-local-input"
+                          formControlName="date_naissance">
+      
+                      </div>
+                      <div class="form-group row">
+      
+                        <input placeholder="Adresse" class="form-control" formControlName="adresse" required>
+                      </div>
+      
+                    </div>
+                    <div class="col-4 pl-4">
+                      <div class="form-group row">
+                        <select name="origine" id="origine" class="form-control" formControlName="origine">
+                          <option value="" disabled selected hidden> Ville d'origine</option>
+                          <option value="sfax">sfax</option>
+                          <option value="tunis">tunis</option>
+                          <option value="le Kef">le Kef</option>
+                        </select>
+                      </div>
+                      <div class="form-group row">
+                        <input placeholder="Téléphone" class="form-control" formControlName="tel" required>
+                      </div>
+                      <div class="form-group row">
+                        <select id="situation_familiale" class="form-control" formControlName="situation_familiale" required>
+                          <option value="" disabled selected hidden> Situation familiale</option>
+                          <option value="Celibataire">célibataire</option>
+                          <option value="Marié">marié</option>
+                          <option value="Divorcé">divorcé</option>
+                        </select>
+                      </div>
+                      <div class="form-group row">
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input form-control" id="inputGroupFile01"
+                              aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row pl-1">
+                        <div class="col-6">
+                          <input id="masculin" class="form-check-input" type="radio" value="masculin" formControlName="sexe">
+                          <label for="masculin" class="form-check-label">Masculin</label>
+                        </div>
+                        <div class="col-6">
+                          <input id="feminin" class="form-check-input" type="radio" value="feminin" formControlName="sexe">
+                          <label for="feminin" class="form-check-label">Feminin</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-4">
+                      <div class="text-center">
+                        <br>
+                        <img src="assets/img/avatar.jpg" alt="" class="avatar img-circle rounded" height="150" width="150">
+                      </div>
+                    </div>
+      
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="mo
+                                                  dal">Fermer</button>
+                    <button type="submit" class="btn btn-dark float-right"
+                      [disabled]="formElecteur.invalid">Enregistrer</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      
+      
+        <table *ngIf="dtOptions" id="listCandidat" datatable datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+          class="row-border hover table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center">Cin</th>
+              <th class="text-center">Nom</th>
+              <th class="text-center">Prénom</th>
+              <th class="text-center">Data de Naissance</th>
+              <th class="text-center">Adresse</th>
+              <th class="text-center">Telephone</th>
+              <th class="text-center">Ville d'origine</th>
+              <!-- <th class="text-center" colspan="3">options</th> -->
+              <th></th>
+              <th> </th>
+              <th></th>
+      
+            </tr>
+          </thead>
+          <tbody>
+      
+            <tr *ngFor="let candidat of electeurs;" [id]="candidat.candidat_id">
+              <td class="text-center">{{ candidat.cin }}</td>
+              <td class="text-center">{{ candidat.nom | titlecase}}</td>
+              <td class="text-center">{{ candidat.prenom }}</td>
+              <td class="text-center">{{ candidat.date_naissance }}</td>
+              <td class="text-center">{{ candidat.adresse | titlecase  }}</td>
+              <td class="text-center">{{ candidat.tel }}</td>
+              <td class="text-center">{{ candidat.origine }}</td>
+              <td><a href="" class="btn btn-success" title="participer"><i class="fa fa-check"></i></a></td>
+              <td><a href="" class="btn btn-primary" title="modifier"><i class="fa fa-edit"></i></a></td>
+              <td><a href="" class="btn btn-danger" title="supprimer"><i class="fa fa-trash"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      
+    </div>
+      

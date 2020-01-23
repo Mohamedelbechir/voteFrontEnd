@@ -12,13 +12,17 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-          <li class="menu-active"><a href="#intro">Accueil</a></li>
+          <li routerLinkActive="menu-active"><a href="#intro" [routerLink]="['/home']">Accueil</a></li>
           <li routerLinkActive="menu-active"><a  [routerLink]="['/candidats-elect']">Candidats</a></li>
-          <li><a href="#speakers">Programme</a></li>      
-          <li><a href="#speakers">Galerie</a></li>
-          <li><a href="#supporters">Partenaire</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="buy-tickets"><a href="#buy-tickets">connexion</a></li>
+          <li routerLinkActive="menu-active"><a  [routerLink]="['/vote']">Vote</a></li>
+          <li routerLinkActive="menu-active"><a  [routerLink]="['/resultats']">Résulats</a></li>
+          <!-- <li routerLinkActive="menu-active"><a href="#speakers" [routerLink]="['/']" >Programme</a></li> -->
+          <li ><a href="#speakers">Galerie</a></li>
+          <li routerLinkActive="menu-active"><a href="#supporters" >Partenaire</a></li>
+          <li ><a href="#contact">Contact</a></li>
+          <li *ngIf="currentUser==null" class="buy-tickets" routerLinkActive="menu-active" (click)="logOut()"><a  [routerLink]="['/login-user']">connexion</a></li>
+          <li *ngIf="currentUser!==null" (click)="logOut()" class="buy-tickets"><a >Déconnexion</a></li>
+          <!-- <li  class="buy-tickets"><a href="#buy-tickets">connexion</a></li> -->
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

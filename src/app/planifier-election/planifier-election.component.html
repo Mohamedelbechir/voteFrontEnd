@@ -19,7 +19,9 @@
         </div>
         <form [formGroup]="formPlan" (ngSubmit)="onSubmit(formPlan.value)">
           <div class="modal-body">
-
+              <div class="form-group">
+                  <input class="form-control" placeholder="libele" formControlName="libele" required>
+                </div>
             <div class="form-group">
               <label for="dateDebut">Date du début d'élection</label><br>
               <input [owlDateTime]="dateDebut"  placeholder="Date Time" id="dateDebut" formControlName="dateDebut" >
@@ -61,6 +63,7 @@
   <table id="dataTablePlanification"  datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover table table-striped table-bordered">
     <thead>
       <tr>
+        <th class="text-center">Libele</th>
         <th class="text-center">Type d'élection</th>
         <th class="text-center">Date debut d'éléction</th>
         <th class="text-center">Date fin d'éléction</th>
@@ -69,6 +72,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let election of elections;">
+          <td class="text-center">{{election.libele }}</td>
         <td class="text-center">{{election.type | titlecase}}</td>
         <td class="text-center">{{election.dateDebut }}</td>
         <td class="text-center">{{election.dateFin}}</td>

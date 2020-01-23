@@ -28,6 +28,12 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
 import { CandidatComponent } from './candidat/candidat.component';
 import { CandidatElectComponent } from './candidat-elect/candidat-elect.component';
+import { VoteComponent } from './vote/vote.component';
+import { ElecteurComponent } from './electeur/electeur.component';
+import { AuthUtilisateurComponent } from './auth-utilisateur/auth-utilisateur.component';
+import { AuthGuard } from './services/AuthGuard';
+import { ResultatComponent } from './resultat/resultat.component';
+import { ResultatCandidatComponent } from './resultat-candidat/resultat-candidat.component';
 
 @NgModule({
   declarations: [
@@ -44,22 +50,27 @@ import { CandidatElectComponent } from './candidat-elect/candidat-elect.componen
     HomePageComponent,
     PlanifierElectionComponent,
     CandidatComponent,
-    CandidatElectComponent
+    CandidatElectComponent,
+    VoteComponent,
+    ElecteurComponent,
+    AuthUtilisateurComponent,
+    ResultatComponent,
+    ResultatCandidatComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
+      AppRoutingModule,
     DataTablesModule,
     FormsModule,
     BrowserAnimationsModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule,
+      OwlNativeDateTimeModule,
     SweetAlert2Module,
     ReactiveFormsModule
 
   ],
-  providers: [AppComponent, ElectionService, { provide: OWL_DATE_TIME_LOCALE, useValue: 'fr' },],
+  providers: [AppComponent, ElectionService, { provide: OWL_DATE_TIME_LOCALE, useValue: 'fr' }, AuthGuard,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

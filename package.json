@@ -27,7 +27,7 @@
     "bootstrap": "^4.3.1",
     "datatables.net": "^1.10.20",
     "datatables.net-dt": "^1.10.20",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "ng-pick-datetime": "^7.0.0",
     "ngx-moment": "^3.5.0",
     "open-iconic": "^1.1.1",
